@@ -1,0 +1,81 @@
+<section>
+    <h2>Angular Organization</h2>
+    <pre><code class="html" data-trim contenteditable style="font-size: 0.80em !important; line-height: 1em;">
+        App--appModule
+                 appRouting
+                 guards/
+                 shared/
+                    sharedModule
+                    pipes/
+                    services/
+                models/
+                services/
+                containers/
+                    containerA.component
+                components/
+                    componentB.component
+                [core/]
+                    actions/
+                    reducers
+                    effects/
+                    selectors/
+                Feature--
+                    featureModule
+                    featureRouting
+                    guards/
+                    models/
+                    services/
+                    containers/
+                        containerC.component
+                    components/
+                        componentD.component
+                    [core/]
+                        actions/
+                        reducers
+                        effects/
+                        selectors/
+
+     </code></pre>
+</section>
+<section>
+        <h2>Angular Import NgRx</h2>
+        <blockquote>npm install @ngrx/store @ngrx/effects @ngrx/store-devtools --save</blockquote>
+        <pre><code class="hljs" data-trim contenteditable style="font-size: 1em !important;">
+            // app.module.ts
+            import { NgModule } from '@angular/core';
+            import { AppComponent } from './app.component';
+            // NgRx import
+            import { StoreModule, ActionReducer, MetaReducer } from '@ngrx/store';
+            import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+            import { EffectsModule } from '@ngrx/effects';
+
+            @NgModule({
+            imports: [
+            StoreModule.forRoot({}, ), //{metaReducers}
+            EffectsModule.forRoot([]),
+            StoreDevtoolsModule.instrument({
+                maxAge: 25, // Retains last 25 states
+                logOnly: environment.production // Restrict extension to log-only mode
+            }),
+            // ...
+            ],
+            bootstrap: [AppComponent]
+            })
+            export class AppModule { }
+         </code></pre>
+    </section>
+<section>
+    <h2>NgRx modules</h2>
+    <ul>
+        <li><strong>@ngrx/store:</strong> RxJS powered state management for Angular applications, inspired by Redux</li>
+        <li><strong>@ngrx/effects:</strong> Side Effect model for @ngrx/store to model event sources as actions</li>
+        <br>
+        <li><strong>@ngrx/store-devtools:</strong> Store instrumentation that enables a powerful time-travelling debugger</li>
+        <br>
+        <li><strong>@ngrx/router-store:</strong> Bindings to connect the Angular Router to @ngrx/store</li>
+        <br>
+        <li><strong>@ngrx/entity:</strong> Entity State adapter for managing record collections</li>
+        <br>
+        <li><strong>@ngrx/schematics:</strong> Scaffolding library for Angular applications using NgRx</li>
+    </ul>
+</section>

@@ -1,0 +1,26 @@
+<section>
+    <h2>Selectors</h2>
+    <ul>
+        <li>Pure FP approach</li><!--Use a pure FP approach-->
+        <li>Extract data from the Store</li><!--selector functions extract data from the store. So instead of mutating the data in the store when you filter it, the store maintains a list and you return a list based on the filter for the component.-->
+        <li>Memoised data => fast </li><!--Selectors are also memoised, which means they’re fast and only recalculate when required to do so.-->
+    </ul>
+    <p>The role of the projector function is a powerful one. We can ask for various state properties, anywhere within our state tree, we can derive, transform or combine data from the state slices passed to it and return this modified data as a single object - typically for component consumption. Again, it’s clean and concise - and this state logic is nowhere inside our components. Our components consume the state, that’s it.</p>
+</section>
+<section>
+    <h2>Selector</h2>
+    <pre><code class="js" data-trim contenteditable style="line-height: 1em;">
+        import { createFeatureSelector, createSelector } from '@ngrx/store';
+
+        export interface State {
+            todo: TodoState
+            }
+
+        export const getTodoState = createFeatureSelector< TodoState >('todo')
+
+        export const getTodosState = createSelector(
+            getTodoState,
+            (state: fromFeature.TodoState) => state.todos
+        )
+    </code></pre>
+</section>

@@ -1,0 +1,32 @@
+<section>
+    <h2>Definition</h2>
+    <blockquote style="line-height: 2em">Redux is a predictable state container for JavaScript apps <span style="position: absolute; right: 0; bottom:-20px; font-size: 0.5em">from Redux.org</span></blockquote>
+</section>
+<section>
+    <h2>Version >= 5.x</h2>
+    <img src="images/ngrx_evolution.jpg" style="border: none; width: 400px" alt="NGRX logo evolution">
+    <p></p>
+    <ul style="font-size: 0.75em">
+        <li>Pipeable Operators</li>
+        <li>Handling Error</li><!--Integrated with th Angular Handling Error-->
+        <li>Store Dev Tools</li><!--improvment-->
+        <li>NgRx Entity</li><!--State adapter for managing record collections => add some methods to update records-->
+        <li>NgRx Schematics</li><!--To scaffold NgRx application through the angular CLI-->
+    </ul>
+    <pre><code class="hljs" data-trim contenteditable style="font-size: 0.85em !important; line-height: 1em;">
+            # selector before
+            store.select('count')
+            # selector after
+            store.pipe(select('count'))
+
+            # ofType before
+            @Effect() myActions$ = this.action$
+                .ofType('LOGIN')
+                ...
+            # ofType after
+            @Effect() authActions$ = this.action$.pipe(
+                ofType('LOGIN'),
+                ...
+            )
+     </code></pre>
+</section>

@@ -1,0 +1,80 @@
+<section>
+    <h2>Reducers</h2>
+   <blockquote>(previousState, action) => newState</blockquote>
+   <p>Reducer === Pure Function:</p>
+   <ul>
+        <li>No side effects (Call non-pure functions:. Date.now() or Math.random())</li>
+        <li>No Asynchronous operation (e.g. API calls)</li>
+        <li>No mutations</li>
+   </ul>
+   <p>=> Just calculations</p>
+</section>
+<section>
+        <h2>Functionnal Decomposition</h2>
+        <p>Different pure functions coexist inside reducer:</p>
+        <ul>
+            <li><strong>Small utility functions:</strong> Containing some reusable chunk of logic that is needed in multiple places</li><!--(which may or may not be actually related to the specific business logic)-->
+            <li><strong>Functions handle a specific update case:</strong> Need parameters other than the typical (state, action) pair</li>
+            <li><strong>Functions handle all updates for a given slice of state:</strong> own the typical (state, action) parameter signature => reducer composition concept</li>
+        </ul>
+</section>
+<section>
+    <h2>Reducer Example</h2>
+    <pre><code class="hljs" data-trim contenteditable style="line-height: 1em; font-size: 0.75em;">
+        // NgRx example
+        export const initialState: State = {
+            entities: [],
+            pending: false,
+            error: null
+        }
+
+        export const todoReducer: ActionReducer< State > = (state = initialState, action: todo.TodoActions): State => {
+            switch (action.type) {
+
+              case todo.ActionTypes.GET_TODO:
+              case todo.ActionTypes.UPDATE_TODO:
+              case todo.ActionTypes.REMOVE_TODO:
+              case todo.ActionTypes.ADD_TODO: {
+                return Object.assign({}, state, { pending: true, error: null })
+              }
+
+              case todo.ActionTypes.ADD_TODO_SUCCESS: {
+                const newTodo: Todo = < Todo >action.payload;
+                return Object.assign({}, state, { entities: [...state.entities, newTodo], pending: false, error: null })
+              }
+
+              default: {
+                return state
+              }
+            }
+        }
+    </code></pre>
+</section>
+<section>
+    <h2>Combine Reducer</h2>
+    <pre><code class="hljs" data-trim contenteditable style="line-height: 1em;">
+        import { StoreModule, MetaReducer } from '@ngrx/store';
+
+        # app.module.ts
+        StoreModule.forRoot({}, {metaReducers})
+
+        # todo.module.ts => feature module
+        StoreModule.forFeature('todo', reducers, {metaReducers}),
+    </code></pre>
+
+        <pre><code class="hljs" data-trim contenteditable style="line-height: 1em;">
+            #TODO: from scratch example
+        </code></pre>
+</section>
+<section>
+    <h2>Reducer semantic</h2>
+    <p>Different type of reducer designation:</p>
+
+    <ul>
+        <li><strong>reducer:</strong> Any pure functions with the following signature: (state, action) => newState</li><!--(ie, any function that could be used as an argument to Array.prototype.reduce)-->
+        <li><strong>root reducer:</strong> The reducer function passed as the first argument  to createStore</li><!--This is the only part of the reducer logic that must have the (state, action) -> newState signature.-->
+        <li><strong>slice reducer:</strong> A reducer function that is being used to handle updates to one specific slice of the state tree</li><!-- => usually done by passing it to combineReducers-->
+        <li><strong>case function:</strong> A function that is being used to handle the update logic for a specific action</li><!--This may actually be a reducer function, or it may require other parameters to do its work properly.-->
+        <li><strong>higher-order reducer/mete-reducer:</strong> A function that takes a reducer function as an argument, and/or returns a new reducer function as a result</li><!--(such as combineReducers, or redux-undo)-->
+    </ul>
+</section>

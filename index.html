@@ -1,0 +1,173 @@
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<link rel="icon" href="images/favicon.ico" />
+
+	<title>NGRX Tutorial Echyzen</title>
+
+	<link rel="stylesheet" href="css/reveal.css">
+	<link rel="stylesheet" href="css/theme/white.css">
+	<link rel="stylesheet" href="css/style.css">
+
+	<!-- Theme used for syntax highlighting of code -->
+	<link rel="stylesheet" href="lib/css/zenburn.css">
+
+
+	<link rel="import" id="link_architecture" href="chapters/architecture.html">
+	<link rel="import" id="link_version" href="chapters/version.html">
+	<link rel="import" id="link_prerequiste" href="chapters/prerequiste.html">
+	<link rel="import" id="link_organization" href="chapters/organization.html">
+	<link rel="import" id="link_introduction" href="chapters/introduction.html">
+	<link rel="import" id="link_action" href="chapters/action.html">
+	<link rel="import" id="link_reducer" href="chapters/reducer.html">
+	<link rel="import" id="link_effect" href="chapters/effect.html">
+	<link rel="import" id="link_store" href="chapters/store.html">
+	<link rel="import" id="link_selector" href="chapters/selector.html">
+	<link rel="import" id="link_tooling" href="chapters/tooling.html">
+	<link rel="import" id="link_view" href="chapters/view.html">
+	<link rel="import" id="link_implementation_summary" href="chapters/implementation_summary.html">
+	<link rel="import" id="link_more-link" href="chapters/more-link.html">
+</head>
+
+<body>
+	<div class="reveal">
+		<div class="slides">
+			<section data-background-color="#dd4a68ff">
+				<section>
+					<img src="images/ngrx_logo.svg" style="border: none;" alt="logo NGRX" />
+					<h1>NgRx Lesson</h1>
+				</section>
+				<section>
+					<h2>Summary</h2>
+					<div class="flex-container">
+						<div class="flex-child">
+							<h6>Presentation</h6>
+							<ul>
+								<li>Version</li>
+								<li>Prerequiste</li>
+								<li>Introduction (Redux + RxJS + Angular)</li>
+								<br>
+								<li>Architecture</li>
+								<li>Organization</li>
+							</ul>
+						</div>
+						<div class="flex-child">
+							<h6>Implementation</h6>
+							<ul>
+								<li>Actions</li>
+								<li>Action Creators</li>
+								<br>
+								<li>Reducers</li>
+								<li>MetaReducers</li>
+								<br>
+								<li>Effects</li>
+								<br>
+								<li>Selectors</li>
+								<br>
+								<li>Store</li>
+								<br>
+								<li>Container vs Presentation</li>
+							</ul>
+						</div>
+						<div class="flex-child">
+							<h6>Conclusion</h6>
+							<ul>
+								<li>introduction Tools</li>
+								<br>
+								<li>Implementation summary</li>
+								<br>
+								<li>Bibliography</li>
+								<li>More Links</li>
+							</ul>
+						</div>
+					</div>
+				</section>
+			</section>
+			<section id="version"></section>
+			<section id="prerequiste"></section>
+			<section id="introduction"></section>
+			<section id="tooling"></section>
+			<section id="architecture"></section>
+			<section id="organization"></section>
+			<section id="action"></section>
+			<section id="reducer"></section>
+			<section id="effect"></section>
+			<section id="store"></section>
+			<section id="selector"></section>
+			<section id="view"></section>
+			<section id="implementation_summary"></section>
+			<section id="more-link"></section>
+		</div>
+
+		<footer id="footer" class="animated-middle">
+			<ul class="icons">
+				<li>
+					<a href="https://github.com/GuillaumeUnice" class="icon" target="_blank">
+						<i class="fa fa-github"></i>
+					</a>
+				</li>
+				<li>
+					<a href="https://www.youtube.com/channel/UC2Y0v3L_J9wTFkkqnLuCDGg" class="icon" target="_blank">
+						<i class="fa fa-youtube"></i>
+					</a>
+				</li>
+				<li>
+					<a href="https://twitter.com/EchyzenWebsite" class="icon" target="_blank">
+						<i class="fa fa-twitter"></i>
+					</a>
+				</li>
+				<!--<li><a href="https://vimeo.com/user13696089" class="icon" target="_blank"><i class="fa fa-vimeo-square"></i></a></li>
+					<li><a href="https://uk.pinterest.com/guillaumeunice/" class="icon" target="_blank"><i class="fa fa-pinterest"></i></a></li>
+					<li><a href="https://www.linkedin.com/in/guillaume-borg-0904b8a8" class="icon" target="_blank"><i class="fa fa-linkedin"></i></a></li>-->
+			</ul>
+		</footer>
+	</div>
+
+	<!-- Printing and PDF exports -->
+	<script>
+		var link = document.createElement('link');
+		link.rel = 'stylesheet';
+		link.type = 'text/css';
+		link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+		document.getElementsByTagName('head')[0].appendChild(link);
+	</script>
+	<script src="lib/js/head.min.js"></script>
+	<script src="js/reveal.js"></script>
+	<script src="js/web_component/HTMLImports.min.js"></script>
+
+	<script>
+		Reveal.initialize({
+			history: true,
+			dependencies: [
+				{ src: 'plugin/markdown/marked.js' },
+				{ src: 'plugin/markdown/markdown.js' },
+				{ src: 'plugin/notes/notes.js', async: true },
+				{ src: 'plugin/highlight/highlight.js', async: true, callback: function () { hljs.initHighlightingOnLoad(); } }
+			]
+		});
+	</script>
+	<script>
+		document.addEventListener('HTMLImportsLoaded', function () {
+			document.getElementById("architecture").innerHTML = document.getElementById('link_architecture').import.body.innerHTML;
+			document.getElementById("version").innerHTML = document.getElementById('link_version').import.body.innerHTML;
+			document.getElementById("introduction").innerHTML = document.getElementById('link_introduction').import.body.innerHTML;
+			document.getElementById("action").innerHTML = document.getElementById('link_action').import.body.innerHTML;
+			document.getElementById("reducer").innerHTML = document.getElementById('link_reducer').import.body.innerHTML;
+			document.getElementById("effect").innerHTML = document.getElementById('link_effect').import.body.innerHTML;
+			document.getElementById("store").innerHTML = document.getElementById('link_store').import.body.innerHTML;
+			document.getElementById("selector").innerHTML = document.getElementById('link_selector').import.body.innerHTML;
+			document.getElementById("tooling").innerHTML = document.getElementById('link_tooling').import.body.innerHTML;
+			document.getElementById("implementation_summary").innerHTML = document.getElementById('link_implementation_summary').import.body.innerHTML;
+			document.getElementById("prerequiste").innerHTML = document.getElementById('link_prerequiste').import.body.innerHTML;
+			document.getElementById("view").innerHTML = document.getElementById('link_view').import.body.innerHTML;
+			document.getElementById("organization").innerHTML = document.getElementById('link_organization').import.body.innerHTML;
+			document.getElementById("more-link").innerHTML = document.getElementById('link_more-link').import.body.innerHTML;
+		})
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,34 @@
+<section>
+    <h2>Effects</h2>
+</section>
+<section>
+    <h2>Effect Example</h2>
+    <pre><code class="hljs" data-trim contenteditable style="line-height: 1em;">
+        import { Actions, Effect, ofType } from '@ngrx/effects'
+        import { Store } from '@ngrx/store'
+        import { ActionTypes, AddAction, AddSuccessAction, AddFailedAction } from '../actions/todo'
+
+        @Injectable()
+        export class TodoEffects {
+           constructor(
+               private _actions$: Actions,
+               private _api: TodoService,
+               private _store$: Store< any >
+           ) { }
+
+
+           @Effect()
+           addTodo$ = this._actions$
+               .ofType(ActionTypes.ADD_TODO)
+               .pipe(
+                   switchMap(
+                       (action: AddAction) => this._api.addTodo(action.payload)
+                           .do((res) => console.warn('[EFFECT] Create', res))
+                   ),
+                   map(res => new CreateSuccessAction(res)),
+                   catchError(error => Observable.of(new AddFailedAction(error.message)))
+
+               )
+        }
+    </code></pre>
+</section>
