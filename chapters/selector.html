@@ -1,14 +1,25 @@
 <section>
     <h2>Selectors</h2>
     <ul>
-        <li>Pure FP approach</li><!--Use a pure FP approach-->
-        <li>Extract data from the Store</li><!--selector functions extract data from the store. So instead of mutating the data in the store when you filter it, the store maintains a list and you return a list based on the filter for the component.-->
-        <li>Memoised data => fast </li><!--Selectors are also memoised, which means they’re fast and only recalculate when required to do so.-->
+        <li>Pure FP approach</li>
+        <li>Extract data from the Store</li>
+        <li>Memoised data => fast </li>
+        <li>Provide a query API for views</li>
     </ul>
     <p>The role of the projector function is a powerful one. We can ask for various state properties, anywhere within our state tree, we can derive, transform or combine data from the state slices passed to it and return this modified data as a single object - typically for component consumption. Again, it’s clean and concise - and this state logic is nowhere inside our components. Our components consume the state, that’s it.</p>
+    <aside class="notes">
+        <ul>
+            <li>Use a pure FP approach</li>
+            <li>selector functions extract data from the store. So instead of mutating the data in the store when you filter it, the store maintains a list and you return a list based on the filter for the component</li>
+            <li>Selectors are also memoised, which means they’re fast and only recalculate when required to do so</li>
+            <li>Reduce action boilerplate</li>
+            <li>Simplify Reducer</li>
+            <li>Routing State</li>
+        </ul>
+    </aside>
 </section>
 <section>
-    <h2>Selector</h2>
+    <h2>createFeatureSelector &amp; createSelector</h2>
     <pre><code class="js" data-trim contenteditable style="line-height: 1em;">
         import { createFeatureSelector, createSelector } from '@ngrx/store';
 
@@ -23,4 +34,27 @@
             (state: fromFeature.TodoState) => state.todos
         )
     </code></pre>
+    <aside class="notes">
+        <p>createFeatureSelector (use lazyloading feature module) create a new reference to a single slice of state (a string value property name)</p>
+    </aside>
+</section>
+
+<section>
+    <h2>use Selector inside Container/Smart Components</h2>
+    <pre><code class="js" data-trim contenteditable style="line-height: 1em;">
+    export class TodoPageComponent implements OnInit {
+
+        constructor(private store: Store<State>) { }
+
+        ngOnInit() {
+            this.todos$ = this.store
+                .pipe(select(getTodosEntities))
+        }
+    }
+    </code></pre>
+    <aside class="notes">
+        <p>
+            The smart thing selector are reactive thus update auomaticaly according to the store
+        </p>
+    </aside>
 </section>

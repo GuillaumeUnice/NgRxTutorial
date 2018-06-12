@@ -62,9 +62,28 @@
         StoreModule.forFeature('todo', reducers, {metaReducers}),
     </code></pre>
 
-        <pre><code class="hljs" data-trim contenteditable style="line-height: 1em;">
-            #TODO: from scratch example
+        <pre><code class="js" data-trim contenteditable style="line-height: 1em;">
+            function combineReducers(reducers) {
+                return function (state = {}, action) {
+                    return Object.keys(reducers).reduce((nextState, key) => {
+                    // Call every reducer with the part of the state it manages
+                    nextState[key] = reducers[key](state[key], action)
+                    return nextState
+                    }, {})
+                }
+            }
         </code></pre>
+</section>
+<section>
+    <h2>Meta-Reducer || Higher Order Reducer</h2>
+   <blockquote>
+    It's a function that takes a reducer, and returns a new reducer that is able to handle new actions, or to hold more state, delegating control to the inner reducer for the actions it doesn't understand.
+   </blockquote>
+   <aside class="notes">
+       <p>
+            This isn't a new pattern—technically, combineReducers() is also a reducer enhancer because it takes reducers and returns a new reducer
+       </p>
+   </aside>
 </section>
 <section>
     <h2>Reducer semantic</h2>

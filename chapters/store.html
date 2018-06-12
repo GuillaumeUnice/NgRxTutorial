@@ -1,22 +1,61 @@
 <section>
     <h2>Store</h2>
-    Le store est un objet unique contenant notre tree/arbre de l’état de notre application.
-   <p>Store a unique centralized plain object which contains a tree state of the whole application</p>
-   <p>Mostly, three kind of data in our state:</p>
- 
-Domain data: data that the application needs to show, use, or modify (such as "all of the Todos retrieved from the server")
-App state: data that is specific to the application's behavior (such as "Todo #5 is currently selected", or "there is a request in progress to fetch Todos")
-UI state: data that represents how the UI is currently displayed (such as "The EditTodo modal dialog is currently open")
-   <ul>
-        <li></li>
-        <li></li>
-        <li></li>
-   </ul>
+    <p>
+        Store is a unique centralized JavaScript Object Literal
+        <br> This tree representation encompass a specific snapshot state of the whole application
+    </p>
+    <p>Mostly, three kind of data in our state:</p>
+
+    <ul>
+        <li>Domain Data: data that the application needs to show, use, or modify</li>
+        <li>App State: data that is specific to the application's behavior</li>
+        <li>UI State: data that represents how the UI is currently displayed</li>
+    </ul>
+    <aside class="notes">
+        <p>Example</p>
+        <ul>
+            <li>Domain Data: "all of the Todos retrieved from the server"</li>
+            <li>App State: "Todo #5 is currently selected" || "there is a request in progress to fetch Todos"</li>
+            <li>UI State:  "The EditTodo modal dialog is currently open"</li>
+        </ul>
+    </aside>
 </section>
 <section>
-        <h2>Store Normalization</h2>
-        <blockquote>Store can be considerer like a database, thus the table are the reducers</blockquote>
+    <h2>Store Normalization</h2>
+    <blockquote>Store can be considerer like a database, thus the table are the reducers</blockquote>
 
 
-        => selection
+    => selection
+</section>
+<section>
+    <h2>State needs: SHARI</h2>
+    <ul>
+        <li>Shared => many components or services</li>
+        <li>Hydrated => persisted &amp; hydrated from Storage</li>
+        <li>Available => re-entering routes</li>
+        <li>Retrieved => retrieved through side-effect</li>
+        <li>Impacted => State that is impacted from other sources</li>
+    </ul>
+    <aside class="notes">
+        <p>
+            -Hydrated: like userPreference could be a good things
+            <br> -Availbale: come back to the page data already here
+            <br> -Retrieved: Unidirectional Data Flow clean/flaten asynchronous complexity
+        </p>
+    </aside>
+</section>
+<section>
+    <h2>What doesn't belong state</h2>
+    <ul>
+        <li>Forms</li>
+        <li>Non serializable Data</li>
+        <li>Ephemeral Data</li>
+    </ul>
+    <aside class="notes">
+        <p>
+            Forms: Cause stateful, self-contained local context => Angular's Form Control aren't serializable &amp; Immutable
+            <br> Non serializable data: function eval or Circular Object Data Structure, Map or Set => Router State example
+            <br> Ephemeral data: Concerning state solely owned by one specific component => I know we break Single truth concept
+        </p>
+    </aside>
 </section>
