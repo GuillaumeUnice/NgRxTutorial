@@ -1,0 +1,29 @@
+{
+  "todos": [
+    {
+      "content": "Learn NGRX",
+      "isCompleted": false,
+      "id": "b605240e-f9fa-c386-b03e-0226756e5779"
+    },
+    {
+      "content": "Learn Haskell",
+      "isCompleted": true,
+      "id": "538866bc-1a27-50ce-316f-5848f8f56904"
+    },
+    {
+      "content": "Learn RxJS",
+      "isCompleted": true,
+      "id": "02ef5029-1eee-5c60-7238-d5e39fff339d"
+    },
+    {
+      "content": "Learn TypeScript",
+      "isCompleted": true,
+      "id": "8b08105b-f384-0874-9be5-bc3bc70fa3dc"
+    },
+    {
+      "content": "Learn NGRouting",
+      "isCompleted": false,
+      "id": "af37db69-36cd-3b2c-b80c-2b20d9283bf5"
+    }
+  ]
+}
